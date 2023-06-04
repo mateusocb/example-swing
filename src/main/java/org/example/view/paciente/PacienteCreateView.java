@@ -1,23 +1,28 @@
 package org.example.view.paciente;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import org.example.dao.PacienteDAO;
 import org.example.entity.Paciente;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
 public class PacienteCreateView extends JFrame {
-    private JTextField txtCpf;
-    private JTextField txtNome;
+    private final JTextField txtCpf;
+    private final JTextField txtNome;
 
-    private PacienteDAO pacienteDAO;
+    private final PacienteDAO pacienteDAO;
 
     public PacienteCreateView() {
         setTitle("Cadastro de Paciente");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 200);
         setLayout(new GridLayout(3, 2));
+
+        pacienteDAO = new PacienteDAO();
 
         JLabel labelNome = new JLabel("Nome:");
         add(labelNome);
@@ -31,10 +36,7 @@ public class PacienteCreateView extends JFrame {
         txtCpf = new JTextField();
         add(txtCpf);
 
-        pacienteDAO = new PacienteDAO();
-
         JButton btnSalvar = new JButton("Salvar");
-
         btnSalvar.addActionListener(this::onSave);
         add(btnSalvar);
     }

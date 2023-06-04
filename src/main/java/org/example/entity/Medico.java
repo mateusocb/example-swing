@@ -1,23 +1,8 @@
 package org.example.entity;
 
 public class Medico extends Pessoa {
-
-
-    private Especialidade[] especialidades;
     private int crm;
     private double valorHora;
-
-    public Medico() {
-        especialidades = new Especialidade[3];
-    }
-
-    public Especialidade[] getEspecialidades() {
-        return especialidades;
-    }
-
-    public void setEspecialidades(Especialidade[] especialidades) {
-        this.especialidades = especialidades;
-    }
 
     public int getCrm() {
         return crm;
@@ -33,5 +18,10 @@ public class Medico extends Pessoa {
 
     public void setValorHora(double valorHora) {
         this.valorHora = valorHora;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
     }
 }

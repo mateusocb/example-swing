@@ -1,17 +1,16 @@
 package org.example.dao;
 
-import org.example.config.MysqlDB;
-import org.example.entity.Medico;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import org.example.config.MysqlDB;
+import org.example.entity.Medico;
 
 
 public class MedicoDAO {
-    private Connection conn;
+    private final Connection conn;
 
     public MedicoDAO() {
         conn = MysqlDB.getConnection();
@@ -86,13 +85,13 @@ public class MedicoDAO {
         return medicos;
     }
 
-    public Medico get(String crm) {
+    public Medico get(int crm) {
         String query = "SELECT * FROM medicos WHERE crm = ?";
         Medico medico = new Medico();
 
         try {
             PreparedStatement statement = conn.prepareStatement(query);
-            statement.setString(1, crm);
+            statement.setInt(1, crm);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
